@@ -14,6 +14,12 @@ $ npx prisma db push --preview-feature
 $ npx prisma generate
 # Only do below if not generate prisma/db
 $ ./bin/prisma-client-go generate
+# create main.go and go build or go install
+# run with env - eg. github.com/joho/godotenv
+go build -o ./bin
+go get github.com/joho/godotenv/cmd/godotenv
+cd bin
+godotenv -f ../.env ./hello-prisma
 ```
 * Then, create `main.go` and write codes
 
@@ -86,6 +92,8 @@ func main() {
 		}
 		return c.JSON(http.StatusOK, books)
 	})
+
+  e.Logger.Fatal(e.Start("127.0.0.1:8989"))
 }
 
 ```
